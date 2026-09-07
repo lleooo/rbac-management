@@ -1,0 +1,50 @@
+### 登入
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "user4@example.com",
+  "password": "12341234"
+}
+
+### 刷新 Access Token（用 login 回傳的 refresh_token）
+POST http://localhost:3000/auth/refresh
+Content-Type: application/json
+
+{
+  "refresh_token": "98fa4447ea04137cb1c60556ed486ab0b69e25fdceb7823e962e8e4f8e94ae01"
+}
+
+### 登出（雙 token 失效：需同時帶 access_token + refresh_token）
+POST http://localhost:3000/auth/logout
+Content-Type: application/json
+Authorization: Bearer paste_access_token_here
+
+{
+  "refresh_token": "paste_refresh_token_here"
+}
+
+### 註冊
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "user4",
+  "email": "user4@example.com",
+  "password": "12341234"
+}
+
+### 取得個人資料
+GET http://localhost:3000/auth/profile
+
+### 建立商品（用 login 回傳的 access_token）
+POST http://localhost:3000/products/create
+Content-Type: application/json
+Authorization: Bearer paste_access_token_here
+
+{
+  "name": "product1",
+  "description": "product1 description",
+  "price": 100,
+  "stock": 100
+}
