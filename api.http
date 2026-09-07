@@ -37,8 +37,14 @@ Content-Type: application/json
 ### 取得個人資料
 GET http://localhost:3000/auth/profile
 
-### 建立商品（用 login 回傳的 access_token）
-POST http://localhost:3000/products/create
+### 商品列表（公開，支援分頁與搜尋）
+GET http://localhost:3000/products?page=1&limit=20&search=rope
+
+### 商品詳情（公開）
+GET http://localhost:3000/products/1
+
+### 建立商品（需 ADMIN，用 login 回傳的 access_token）
+POST http://localhost:3000/products
 Content-Type: application/json
 Authorization: Bearer paste_access_token_here
 
@@ -48,3 +54,17 @@ Authorization: Bearer paste_access_token_here
   "price": 100,
   "stock": 100
 }
+
+### 更新商品（需 ADMIN）
+PATCH http://localhost:3000/products/1
+Content-Type: application/json
+Authorization: Bearer paste_access_token_here
+
+{
+  "price": 120,
+  "stock": 80
+}
+
+### 刪除商品（需 ADMIN）
+DELETE http://localhost:3000/products/1
+Authorization: Bearer paste_access_token_here
